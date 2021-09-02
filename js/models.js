@@ -86,7 +86,7 @@ class StoryList {
         token: user.loginToken,
         story: newStory
       }
-    })
+    });
 
     const { story } = response.data;
 

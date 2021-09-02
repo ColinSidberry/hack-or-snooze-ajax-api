@@ -12,7 +12,6 @@ const $signupForm = $("#signup-form");
 
 const $navLogin = $("#nav-login");
 const $navSubmit = $("#nav-submit");
-console.log("$navSubmit from main.js",$navSubmit);
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 

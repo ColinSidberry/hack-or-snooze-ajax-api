@@ -2,6 +2,22 @@
 
 // This is the global list of the stories, an instance of StoryList
 let storyList;
+const $newStorySubmitForm = $("#new-story-submit-form");
+
+/**Pulls new story data (author, title, URL) and prepend the information to the DOM.  */
+async function getNewStoryAndPrependToDOM (evt) { 
+  evt.preventDefault();
+  const author = $("#new-story-author").val();
+  const title = $("#new-story-title").val();
+  const url = $("#new-story-url").val();
+
+  let newStory = await storyList.addStory(currentUser, {title, author, url});
+
+  $allStoriesList.prepend(generateStoryMarkup(newStory));
+  console.log("Your story was added.")
+}
+$newStorySubmitForm.on("submit", getNewStoryAndPrependToDOM);//Question: When do we need to do event delegation here? to have the pa
+
 
 /** Get and show stories when site first loads. */
 
