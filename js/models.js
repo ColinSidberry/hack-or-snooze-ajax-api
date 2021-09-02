@@ -73,8 +73,33 @@ class StoryList {
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
+
+    // using the user and newStory obj,  return newStory
+    // connect to API when returning the newStory
+
+    const response = axios({
+      url: `${BASE_URL}/stories`,
+      method: "POST",
+      // pass in user and newStory
+      // for the new 
+      data: { // is it a problem newStory passes in additional information that's different from Insomnia call
+        token: user.token,
+        story: newStory
+      }
+    })
+    return new Story(
+      {
+        author: response.data.author,
+        createdAt: response.data.createdAt,
+        storyId: response.data.storyId,
+        title: response.data.title,
+        updatedAt: response.data.createdAt,
+        url: response.data.url,
+        username: response.data.username
+      }
+    );
   }
 }
 
@@ -90,13 +115,13 @@ class User {
    */
 
   constructor({
-                username,
-                name,
-                createdAt,
-                favorites = [],
-                ownStories = []
-              },
-              token) {
+    username,
+    name,
+    createdAt,
+    favorites = [],
+    ownStories = []
+  },
+    token) {
     this.username = username;
     this.name = name;
     this.createdAt = createdAt;
