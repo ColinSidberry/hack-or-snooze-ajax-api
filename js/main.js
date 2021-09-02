@@ -1,7 +1,7 @@
 "use strict";
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
-
+console.log("main.js ran");
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -11,6 +11,8 @@ const $loginForm = $("#login-form");
 const $signupForm = $("#signup-form");
 
 const $navLogin = $("#nav-login");
+const $navSubmit = $("#nav-submit");
+console.log("$navSubmit from main.js",$navSubmit);
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 
