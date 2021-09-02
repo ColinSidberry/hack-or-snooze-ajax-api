@@ -79,25 +79,32 @@ class StoryList {
     // using the user and newStory obj,  return newStory
     // connect to API when returning the newStory
 
-    const response = axios({
+    const response = await axios({
       url: `${BASE_URL}/stories`,
       method: "POST",
-      // pass in user and newStory
-      // for the new 
-      data: { // is it a problem newStory passes in additional information that's different from Insomnia call
-        token: user.token,
+      data: {
+        token: user.loginToken,
         story: newStory
       }
     })
+
+    const { story } = response.data;
+
+    // console.log('user', user)
+    // console.log('newStory', newStory)
+    // console.log('response', response)
+    // console.log('response.data', response.data)
+    // console.log('story', story)
+    // console.log('responseStruc', story.author)
     return new Story(
       {
-        author: response.data.author,
-        createdAt: response.data.createdAt,
-        storyId: response.data.storyId,
-        title: response.data.title,
-        updatedAt: response.data.createdAt,
-        url: response.data.url,
-        username: response.data.username
+        author: story.author,
+        createdAt: story.createdAt,
+        storyId: story.storyId,
+        title: story.title,
+        updatedAt: story.createdAt,
+        url: story.url,
+        username: story.username
       }
     );
   }
