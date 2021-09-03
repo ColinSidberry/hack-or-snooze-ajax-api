@@ -247,26 +247,41 @@ class User {
     }
   }
 
-  async addFavorite(story) {
-    // get identifier from DOM that marks a favorite story
-    // 
+  /**Doc string
+   * Adding favorite sotry to user's favorites array //Question: maybe add more detail
+   */
+  async addFavorite(evt) {
+    console.debug("addFavorite");
 
-    // Add two methods to the User class, letting the user favorite or un-favorite a story. These methods will need to take a Story instance. They should also send a request to the API so the server knows when a favorite/un-favorite action occurs.
+    // Instruction: Add two methods to the User class, letting the user favorite or un-favorite a story. These methods will need to take a Story instance. They should also send a request to the API so the server knows when a favorite/un-favorite action occurs.
 
-    // need to figure out how to add to favorites array(?)
-    // taking into account the favorite icon in DOM to add
-      // on click, add the story to favorite
-    // an API POST request;
-      // need to figure out structure
-      // how to pass in token of user in the body? 
-        // review axios or API docs for how to pass in a token in the body
-          // maybe similar to passing in "data {}" in previous axios uses
+    // 1. need to figure out how to add to favorites array(?) within User class
+    
+
+    this.favorites.push(story); 
+
+    // 2.  taking into account the favorite icon in DOM to add //Question: to capture the user click do we need a button or can we use an a tag or something else?
+      // Done
+    // 3. get identifier from DOM that marks a favorite story
+        //listener on the parent -> id="all-stories-list"
+        //drill button class .favorites
+    // 4. on click, add the story to favorite
+    // 5.  an API POST request;
+        // need to figure out structure
+        // how to pass in token of user in the API post request body? 
+          // review axios or API docs for how to pass in a token in the body
+            // maybe similar to passing in "data {}" in previous axios uses
 
 
   }
+
+  // current function takes in a sotry
+  //same as current function (function->story)
+
 
   async removeFavorite(story) {
     // figure out how to remove favorite from array
   }
 
 }
+

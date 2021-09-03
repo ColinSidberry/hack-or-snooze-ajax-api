@@ -34,11 +34,12 @@ async function getAndShowStoriesOnStart() {
  */
 
 function generateStoryMarkup(story) {
-  console.debug("generateStoryMarkup", story);
+  // console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
+      <button class="favorite-button"><i class="fas fa-heart"></i></button>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -64,3 +65,22 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+
+function handleFavoriteClick(evt){
+  const storyId = $(evt.target).closest("li")//.("#id");//Question: why are u red?
+  console.log("storyIdList: ", storyId);
+  console.log("type: ", typeof storyId);
+  // for (let story of storyList){
+  //   if (story["storyId"] === storyId){
+  //       return story;
+  //   }
+  // }
+}
+
+// current function takes in a sotry
+//same as current function (function->story)
+
+$allStoriesList.on("click", ".favorite-button", handleFavoriteClick); 
+//where does this go
+

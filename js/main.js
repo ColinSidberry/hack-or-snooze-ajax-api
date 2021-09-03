@@ -1,7 +1,6 @@
 "use strict";
 
 // So we don't have to keep re-finding things on page, find DOM elements once:
-console.log("main.js ran");
 const $body = $("body");
 
 const $storiesLoadingMsg = $("#stories-loading-msg");
@@ -19,6 +18,8 @@ const $newStorySubmitForm = $("#new-story-submit-form");
 const $newStoryAuthor = $("#new-story-author");
 const $newStoryTitle = $("#new-story-title");
 const $newStoryURL = $("#new-story-url");
+
+//Question: Any tips on how to group these global variables?
 
 
 
