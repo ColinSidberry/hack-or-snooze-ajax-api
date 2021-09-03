@@ -295,6 +295,7 @@ class User {
    */
 
   async removeFavorite(toBeRemovedStory) {
+    console.debug("removeFavorite");
     let favoritesIndex = this.favorites.findIndex(
       ({ storyId }) => storyId === toBeRemovedStory.storyId
     );
@@ -311,10 +312,10 @@ class User {
 
 
   // figure out how to remove favorite from array
-  /**
-   * user clicks
-   * if the id of that clicked favorite button is in the array remove from array and database
-   */
+/**
+ * user clicks
+ * if the id of that clicked favorite button is in the array remove from array and database
+ */
 
   // similar idea with eventlistner to add to favorite to find story id
   // then do array methods like splice() to remove selected/found story

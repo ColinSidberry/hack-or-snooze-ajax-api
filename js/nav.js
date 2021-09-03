@@ -22,6 +22,13 @@ function navShowSubmitForm(evt) {
 
 $navSubmit.on("click", navShowSubmitForm);
 
+/** Shows the user's favorite stories */
+function navShowFavoriteStories(evt) {
+  console.debug("navShowFavoriteStories")
+  // calls the function that replaces storyList with favorite story array items
+}
+
+$navFavorites.on("click", navShowFavoriteStories);
 
 /** Show login/signup on click on "login" */
 

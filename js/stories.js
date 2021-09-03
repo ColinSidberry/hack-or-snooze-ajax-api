@@ -67,6 +67,9 @@ function putStoriesOnPage() {
   $allStoriesList.show();
 }
 
+/** Gets list of favorite stories from user, generates their HTML, and puts on page */
+
+
 
 /** Consider breaking apart
  * 
@@ -77,9 +80,9 @@ function putStoriesOnPage() {
  *  Otherwise remove from user's favorite story array 
  * 
  */
-
 function handleFavoriteClick(evt) {
-  const clickedStoryId = $(evt.target).closest("li").attr("id")
+  console.debug("handleFavoriteClick");
+  const clickedStoryId = $(evt.target).closest("li").attr("id");
   // console.log("storyIdList: ", storyId);
   let favoriteStory = currentUser.favorites.find(
     ({ storyId }) => storyId === clickedStoryId
@@ -87,9 +90,11 @@ function handleFavoriteClick(evt) {
 
   if (!favoriteStory) {
     // instead of looping through all stories, just do array.find()
-    let newFavoriteStory = storyList.stories.find(({ storyId }) => storyId === clickedStoryId)
-    console.log("newFavStory", newFavoriteStory)
-    currentUser.addFavorite(newFavoriteStory)
+    let newFavoriteStory = storyList.stories.find(
+      ({ storyId }) => storyId === clickedStoryId
+    );
+    // console.log("newFavStory", newFavoriteStory);
+    currentUser.addFavorite(newFavoriteStory);
 
   } else {
     currentUser.removeFavorite(favoriteStory);
