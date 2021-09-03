@@ -14,7 +14,7 @@ $body.on("click", "#nav-all", navAllStories);
 
 /**Shows the form for submiting a new story upon clicking the submit link in the nav. */
 function navShowSubmitForm(evt) {
-  console.debug("navShowSubmitForm", evt);//Question: why do we do this?
+  console.debug("navShowSubmitForm", evt);
   //get the id for the form
   //then pass in show class
   $newStorySubmitForm.show();

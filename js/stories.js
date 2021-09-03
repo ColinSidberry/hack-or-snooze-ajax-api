@@ -14,14 +14,6 @@ async function getNewStoryAndPrependToDOM(evt) {
   $allStoriesList.prepend(generateStoryMarkup(newStory));
 }
 
-// Issue/Question
-// for some reason, storyList isn't being updated after a new story is added
-// storyList starts at 25 and should increase to 26 when a new story is submitted,
-// however, the console.logs() still show the old number of 25 for storyList
-// which doesn't include the most recently added story
-// this makes it so adding a recent story submission as a favorite will not work
-
-
 
 $newStorySubmitForm.on("submit", getNewStoryAndPrependToDOM);
 
@@ -76,29 +68,34 @@ function putStoriesOnPage() {
 }
 
 
+/** Consider breaking apart
+ * 
+ * Takes in a clicked event on a story favorite button
+ * Finds storyId of clicked array
+ * Checks if the story has been favorited before or not
+ *  Add to user's favorite story array if the story hasn't been favorited before
+ *  Otherwise remove from user's favorite story array 
+ * 
+ */
+
 function handleFavoriteClick(evt) {
-  const clickedStoryId = $(evt.target).closest("li").attr("id")//.("#id");//Question: why are u red?
+  const clickedStoryId = $(evt.target).closest("li").attr("id")
   // console.log("storyIdList: ", storyId);
-  let favoritesIndex =  currentUser.favorites.findIndex(({storyId}) => storyId === clickedStoryId);
-  if(favoritesIndex < 0) {
-    for (let story of storyList.stories) {
-      console.log('inside loop');
-      if (story["storyId"] === clickedStoryId) {
-        // console.log("currentUser", currentUser)
-        currentUser.addFavorite(story);
-      }
-    }
+  let favoriteStory = currentUser.favorites.find(
+    ({ storyId }) => storyId === clickedStoryId
+  );
+
+  if (!favoriteStory) {
+    // instead of looping through all stories, just do array.find()
+    let newFavoriteStory = storyList.stories.find(({ storyId }) => storyId === clickedStoryId)
+    console.log("newFavStory", newFavoriteStory)
+    currentUser.addFavorite(newFavoriteStory)
+
   } else {
-    currentUser.removeFavorite(favoritesIndex);
+    currentUser.removeFavorite(favoriteStory);
   }
-  //if in favorite
-    //call remove function
 }
 
-
-// current function takes in a sotry
-//same as current function (function->story)
-
 $allStoriesList.on("click", ".favorite-button", handleFavoriteClick);
-//where does this go
+
 

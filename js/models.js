@@ -281,7 +281,6 @@ class User {
     // review axios or API docs for how to pass in a token in the body done
     // maybe similar to passing in "data {}" in previous axios uses
 
-
     await axios({
       url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       method: "POST",
@@ -290,36 +289,46 @@ class User {
 
   }
 
-  // current function takes in a sotry
-  //same as current function (function->story)
+  /**
+   * Takes in a story that has already been favorited,
+   *  removes it from current user's favorite array and updates the database
+   */
 
-
-  async removeFavorite(favoritesIndex) {
-    let story = this.favorites[favoritesIndex];
-    this.favorites.splice(favoritesIndex,1);
-    console.log("inside remove function");
+  async removeFavorite(toBeRemovedStory) {
+    let favoritesIndex = this.favorites.findIndex(
+      ({ storyId }) => storyId === toBeRemovedStory.storyId
+    );
+    this.favorites.splice(favoritesIndex, 1);
+    // console.log("inside remove function");
     await axios({
-      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      url: `${BASE_URL}/users/${this.username}/favorites/${toBeRemovedStory.storyId}`,
       method: "DELETE",
       data: { token: this.loginToken }
     }); // Question, is there a way to see what the POST is sending in Chrome console? 
-    console.log("End the remove funciton");
   }
-    // figure out how to remove favorite from array
-    /**
-     * user clicks
-     * if the id of that clicked favorite button is in the array remove from array and database
-     */
-
-    // similar idea with eventlistner to add to favorite to find story id
-    // then do array methods like splice() to remove selected/found story
-    // update server with change
-
-    // also need to update favorite icon to show favorite/unfavorite similar to solutions
-    // maybe do a toggle regarding some class to indicate favorite
-    // if class have favorite, when clicking on button remove from favorite
-
-  
-
 }
+
+
+
+  // figure out how to remove favorite from array
+  /**
+   * user clicks
+   * if the id of that clicked favorite button is in the array remove from array and database
+   */
+
+  // similar idea with eventlistner to add to favorite to find story id
+  // then do array methods like splice() to remove selected/found story
+  // update server with change
+
+  // also need to update favorite icon to show favorite/unfavorite similar to solutions
+  // maybe do a toggle regarding some class to indicate favorite
+  // if class have favorite, when clicking on button remove from favorite
+
+
+// have a favorite link in the navbar
+    // favorite section that only shows the favorited stories in favorite array
+        // probably populate the storiesList/container area with the favoriate array stories
+    // hide the main-nav-links when not logged in
+    // switch favorite icon based on favorite or not
+
 
