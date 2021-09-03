@@ -17,7 +17,6 @@ function navShowSubmitForm(evt) {
   console.debug("navShowSubmitForm", evt);//Question: why do we do this?
   //get the id for the form
   //then pass in show class
-  const $newStorySubmitForm = $("#new-story-submit-form"); // move to main.js with the rest of DOM calls
   $newStorySubmitForm.show();
 }
 

@@ -2,21 +2,19 @@
 
 // This is the global list of the stories, an instance of StoryList
 let storyList;
-const $newStorySubmitForm = $("#new-story-submit-form"); // move to main.js
 
 /**Pulls new story data (author, title, URL) and prepend the information to the DOM.  */
 async function getNewStoryAndPrependToDOM(evt) {
+  console.debug("getNewStoryAndPrependtoDOM", evt);
   evt.preventDefault();
-  const author = $("#new-story-author").val(); // move to main.js
-  const title = $("#new-story-title").val();
+  const author = $newStoryAuthor.val(); // move to main.js
+  const title = $newStoryTitle.val();
   const url = $newStoryURL.val();
-
   let newStory = await storyList.addStory(currentUser, { title, author, url });
 
   $allStoriesList.prepend(generateStoryMarkup(newStory));
-  console.log("Your story was added.") // replace this with a console.debug at top like other fns; console.log should mention where
 }
-$newStorySubmitForm.on("submit", getNewStoryAndPrependToDOM);//Question: When do we need to do event delegation here? to have the pa
+$newStorySubmitForm.on("submit", getNewStoryAndPrependToDOM);
 
 
 /** Get and show stories when site first loads. */
@@ -36,7 +34,7 @@ async function getAndShowStoriesOnStart() {
  */
 
 function generateStoryMarkup(story) {
-  // console.debug("generateStoryMarkup", story);
+  console.debug("generateStoryMarkup", story);
 
   const hostName = story.getHostName();
   return $(`

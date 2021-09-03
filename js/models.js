@@ -25,7 +25,28 @@ class Story {
 
   getHostName() {
     // UNIMPLEMENTED: complete this function!
-    return "hostname.com";
+    // get URL passed in
+    // stringify
+    // call .split("/")
+    // index 2 in the array is hostname
+    // return above
+
+    let hostname;
+    let rawURL = this.url.split("/")[2];
+    let splitRawURL = rawURL.split(".");
+
+    // if (splitRawURL[0] === "www") {
+    //   hostname = `${splitRawURL[1]}.${splitRawURL[2]}`;
+    // } else {
+    //   hostname = rawURL;
+    // }
+
+    hostname = splitRawURL[0] === "www" ? `${splitRawURL[1]}.${splitRawURL[2]}` : rawURL;
+
+    // hostname = new URL(this.url).hostname; // still includes www subdomain
+    // console.log('hostname check', hostname)
+
+    return hostname
   }
 }
 
@@ -225,4 +246,27 @@ class User {
       return null;
     }
   }
+
+  async addFavorite(story) {
+    // get identifier from DOM that marks a favorite story
+    // 
+
+    // Add two methods to the User class, letting the user favorite or un-favorite a story. These methods will need to take a Story instance. They should also send a request to the API so the server knows when a favorite/un-favorite action occurs.
+
+    // need to figure out how to add to favorites array(?)
+    // taking into account the favorite icon in DOM to add
+      // on click, add the story to favorite
+    // an API POST request;
+      // need to figure out structure
+      // how to pass in token of user in the body? 
+        // review axios or API docs for how to pass in a token in the body
+          // maybe similar to passing in "data {}" in previous axios uses
+
+
+  }
+
+  async removeFavorite(story) {
+    // figure out how to remove favorite from array
+  }
+
 }
