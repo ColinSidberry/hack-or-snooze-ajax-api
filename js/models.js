@@ -117,7 +117,8 @@ class StoryList {
     // console.log('response.data', response.data)
     // console.log('story', story)
     // console.log('responseStruc', story.author)
-    return new Story(
+
+    let newStoryInstance = new Story(
       {
         author: story.author,
         createdAt: story.createdAt,
@@ -128,6 +129,10 @@ class StoryList {
         username: story.username
       }
     );
+
+    this.stories.unshift(newStoryInstance);
+    return newStoryInstance;
+
   }
 }
 
@@ -250,27 +255,30 @@ class User {
   /**Doc string
    * Adding favorite sotry to user's favorites array //Question: maybe add more detail
    */
-  async addFavorite(evt) {
+  async addFavorite(story) {
     console.debug("addFavorite");
 
     // Instruction: Add two methods to the User class, letting the user favorite or un-favorite a story. These methods will need to take a Story instance. They should also send a request to the API so the server knows when a favorite/un-favorite action occurs.
 
     // 1. need to figure out how to add to favorites array(?) within User class
-    
 
-    this.favorites.push(story); 
+
+    this.favorites.push(story);
 
     // 2.  taking into account the favorite icon in DOM to add //Question: to capture the user click do we need a button or can we use an a tag or something else?
-      // Done
+    // Done
     // 3. get identifier from DOM that marks a favorite story
-        //listener on the parent -> id="all-stories-list"
-        //drill button class .favorites
+    //listener on the parent -> id="all-stories-list"
+    //drill button class .favorites
+    // done
     // 4. on click, add the story to favorite
+    /// done
     // 5.  an API POST request;
-        // need to figure out structure
-        // how to pass in token of user in the API post request body? 
-          // review axios or API docs for how to pass in a token in the body
-            // maybe similar to passing in "data {}" in previous axios uses
+    // need to figure out structure
+    // how to pass in token of user in the API post request body? 
+    // review axios or API docs for how to pass in a token in the body
+    // maybe similar to passing in "data {}" in previous axios uses
+
 
 
   }
@@ -281,6 +289,13 @@ class User {
 
   async removeFavorite(story) {
     // figure out how to remove favorite from array
+
+    // similar idea with eventlistner to add to favorite to find story id
+    // then do array methods like splice() to remove selected/found story
+    // update server with change
+
+    // also need to update favorite icon to show favorite/unfavorite similar to solutions
+
   }
 
 }

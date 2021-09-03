@@ -7,13 +7,22 @@ let storyList;
 async function getNewStoryAndPrependToDOM(evt) {
   console.debug("getNewStoryAndPrependtoDOM", evt);
   evt.preventDefault();
-  const author = $newStoryAuthor.val(); // move to main.js
+  const author = $newStoryAuthor.val();
   const title = $newStoryTitle.val();
   const url = $newStoryURL.val();
   let newStory = await storyList.addStory(currentUser, { title, author, url });
-
   $allStoriesList.prepend(generateStoryMarkup(newStory));
 }
+
+// Issue/Question
+// for some reason, storyList isn't being updated after a new story is added
+// storyList starts at 25 and should increase to 26 when a new story is submitted,
+// however, the console.logs() still show the old number of 25 for storyList
+// which doesn't include the most recently added story
+// this makes it so adding a recent story submission as a favorite will not work
+
+
+
 $newStorySubmitForm.on("submit", getNewStoryAndPrependToDOM);
 
 
@@ -67,20 +76,21 @@ function putStoriesOnPage() {
 }
 
 
-function handleFavoriteClick(evt){
-  const storyId = $(evt.target).closest("li")//.("#id");//Question: why are u red?
+function handleFavoriteClick(evt) {
+  const storyId = $(evt.target).closest("li").attr("id")//.("#id");//Question: why are u red?
   console.log("storyIdList: ", storyId);
-  console.log("type: ", typeof storyId);
-  // for (let story of storyList){
-  //   if (story["storyId"] === storyId){
-  //       return story;
-  //   }
-  // }
+  for (let story of storyList.stories) {
+    // console.log('inside loop', story)
+    if (story["storyId"] === storyId) {
+      console.log("currentUser", currentUser)
+      currentUser.addFavorite(story);
+    }
+  }
 }
 
 // current function takes in a sotry
 //same as current function (function->story)
 
-$allStoriesList.on("click", ".favorite-button", handleFavoriteClick); 
+$allStoriesList.on("click", ".favorite-button", handleFavoriteClick);
 //where does this go
 
