@@ -253,7 +253,9 @@ class User {
   }
 
   /**Doc string
-   * Adding favorite sotry to user's favorites array //Question: maybe add more detail
+   * 
+   * Adding favorite story to user's favorites array and update database about new addition
+   * 
    */
   async addFavorite(story) {
     console.debug("addFavorite");
@@ -275,11 +277,16 @@ class User {
     /// done
     // 5.  an API POST request;
     // need to figure out structure
-    // how to pass in token of user in the API post request body? 
-    // review axios or API docs for how to pass in a token in the body
+    // how to pass in token of user in the API post request body? done
+    // review axios or API docs for how to pass in a token in the body done
     // maybe similar to passing in "data {}" in previous axios uses
 
 
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: { token: this.loginToken }
+    }); // Question, is there a way to see what the POST is sending in Chrome console? 
 
   }
 
@@ -295,6 +302,8 @@ class User {
     // update server with change
 
     // also need to update favorite icon to show favorite/unfavorite similar to solutions
+    // maybe do a toggle regarding some class to indicate favorite
+    // if class have favorite, when clicking on button remove from favorite
 
   }
 
