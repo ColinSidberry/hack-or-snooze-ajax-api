@@ -294,8 +294,22 @@ class User {
   //same as current function (function->story)
 
 
-  async removeFavorite(story) {
+  async removeFavorite(favoritesIndex) {
+    let story = this.favorites[favoritesIndex];
+    this.favorites.splice(favoritesIndex,1);
+    console.log("inside remove function");
+    await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "DELETE",
+      data: { token: this.loginToken }
+    }); // Question, is there a way to see what the POST is sending in Chrome console? 
+    console.log("End the remove funciton");
+  }
     // figure out how to remove favorite from array
+    /**
+     * user clicks
+     * if the id of that clicked favorite button is in the array remove from array and database
+     */
 
     // similar idea with eventlistner to add to favorite to find story id
     // then do array methods like splice() to remove selected/found story
@@ -305,7 +319,7 @@ class User {
     // maybe do a toggle regarding some class to indicate favorite
     // if class have favorite, when clicking on button remove from favorite
 
-  }
+  
 
 }
 

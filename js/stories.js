@@ -77,16 +77,24 @@ function putStoriesOnPage() {
 
 
 function handleFavoriteClick(evt) {
-  const storyId = $(evt.target).closest("li").attr("id")//.("#id");//Question: why are u red?
-  console.log("storyIdList: ", storyId);
-  for (let story of storyList.stories) {
-    // console.log('inside loop', story)
-    if (story["storyId"] === storyId) {
-      console.log("currentUser", currentUser)
-      currentUser.addFavorite(story);
+  const clickedStoryId = $(evt.target).closest("li").attr("id")//.("#id");//Question: why are u red?
+  // console.log("storyIdList: ", storyId);
+  let favoritesIndex =  currentUser.favorites.findIndex(({storyId}) => storyId === clickedStoryId);
+  if(favoritesIndex < 0) {
+    for (let story of storyList.stories) {
+      console.log('inside loop');
+      if (story["storyId"] === clickedStoryId) {
+        // console.log("currentUser", currentUser)
+        currentUser.addFavorite(story);
+      }
     }
+  } else {
+    currentUser.removeFavorite(favoritesIndex);
   }
+  //if in favorite
+    //call remove function
 }
+
 
 // current function takes in a sotry
 //same as current function (function->story)
