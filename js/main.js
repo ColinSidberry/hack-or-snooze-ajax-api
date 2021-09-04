@@ -35,6 +35,7 @@ function hidePageComponents() {
     $allStoriesList,
     $loginForm,
     $signupForm,
+    $newStorySubmitForm // newly added 9/1/21 5pm
   ];
   components.forEach(c => c.hide());
 }

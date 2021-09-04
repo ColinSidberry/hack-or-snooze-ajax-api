@@ -69,7 +69,19 @@ function putStoriesOnPage() {
 
 /** Gets list of favorite stories from user, generates their HTML, and puts on page */
 
+function putFavoriteStoriesOnPage() {
+  console.debug("putFavoriteStoriesOnPage");
 
+  $allStoriesList.empty();
+
+  for (let story of currentUser.favorites) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+
+  $allStoriesList.show();
+
+}
 
 /** Consider breaking apart
  * 

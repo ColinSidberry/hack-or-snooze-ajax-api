@@ -18,14 +18,17 @@ function navShowSubmitForm(evt) {
   //get the id for the form
   //then pass in show class
   $newStorySubmitForm.show();
+  putStoriesOnPage();
 }
 
 $navSubmit.on("click", navShowSubmitForm);
 
 /** Shows the user's favorite stories */
 function navShowFavoriteStories(evt) {
-  console.debug("navShowFavoriteStories")
+  console.debug("navShowFavoriteStories", evt)
   // calls the function that replaces storyList with favorite story array items
+  hidePageComponents();
+  putFavoriteStoriesOnPage();
 }
 
 $navFavorites.on("click", navShowFavoriteStories);
